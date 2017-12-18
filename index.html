@@ -1,0 +1,78 @@
+<!--Date Dec 16, 2017-->
+<!--Saturday-->
+<!DOCTYPE>
+<html>
+<head>
+    <title>ScetchPad</title>
+    </head>
+    <style>
+        body{
+            margin: 0; padding: 0;
+            font-family: monospace;
+        }
+        header{
+            padding-bottom: 10px;
+            padding-top: 10px;
+            background-color: black;
+            width: 586px;
+            margin: auto;
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+        h1{color: #536dfe; text-align: center;}
+        #container{
+            margin: auto;
+            height:580px;
+            width:580px;
+            border: 3px inset black;
+        }
+        footer{
+            height: 150px;
+            width: 580px;
+            margin: auto;
+        }
+        
+    </style>
+<body>
+    <header><h1>ScetchPad</h1></header>
+    <div id="container"></div>
+    <footer>
+        <button style="margin: 20px auto 0;" height="15px" width="auto" onclick="popup()">Resize Grid</button>
+        <div style="margin-top: 10px;"><label for="color">Select Color: </label>
+    <input type="color" id="color" value="#000000"></div></footer>
+</body>
+<script>
+      window.onload=createGrid(16);
+function createGrid(num){
+    var d= 560/num;
+    var container=document.getElementById("container");
+    container.innerHTML="";
+    var k=0;
+    for(var i=0;i<num;i++){
+        var div= document.createElement("div");
+        div.style.height="auto";
+        div.style.width="auto";
+        for(var j=0;j<num;j++){
+            var cell= document.createElement("div");
+            cell.style.borderRight= (20/num)+"px solid #3d5afe";
+            cell.style.borderBottom= (20/num)+"px solid #3d5afe";
+            cell.style.height=d+"px";
+            cell.style.width=d+"px";
+            cell.style.float="left";
+            cell.style.background="#536dfe";
+            cell.addEventListener("mouseover",function(e){
+                var color= document.getElementById("color");
+                var c=color.value
+                e.target.style.backgroundColor= c;
+            })
+            div.appendChild(cell);
+        }
+        container.appendChild(div);
+    }
+}
+    function popup(){
+        var grid= prompt("Please enter number of grids");
+        createGrid(grid);
+    }
+    </script>
+</html>
